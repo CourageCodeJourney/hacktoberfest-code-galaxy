@@ -111,5 +111,51 @@ You’re free to use, remix, and improve — just give credit where it’s due �
 Built with passion by **[Courage Paul (CourageCodeJourney)](https://github.com/CourageCodeJourney)**
 
 > “Creativity begins when you turn logic into art.” 🌌
+## ✨ Shining Stars Animation
+
+This animation adds a beautiful shining stars effect to the background of the webpage, creating a galactic theme for the project.  
+
+### 🪐 Preview
+![Stars Animation Preview](https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif)
+
+### 💻 How It Works
+The effect uses CSS animations with multiple layers of moving star textures to simulate a galaxy-like motion.
+
+```html
+<!-- Shining Stars Animation -->
+<div class="stars"></div>
+<div class="twinkling"></div>
+
+<style>
+  .stars, .twinkling {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: -1;
+  }
+
+  .stars {
+    background: url('https://www.script-tutorials.com/demos/360/images/stars.png') repeat;
+    animation: moveStars 200s linear infinite;
+  }
+
+  .twinkling {
+    background: url('https://www.script-tutorials.com/demos/360/images/twinkling.png') repeat;
+    animation: moveTwinkling 200s linear infinite;
+  }
+
+  @keyframes moveStars {
+    from {background-position: 0 0;}
+    to {background-position: -10000px 5000px;}
+  }
+
+  @keyframes moveTwinkling {
+    from {background-position: 0 0;}
+    to {background-position: 10000px 5000px;}
+  }
+</style>
 
 
