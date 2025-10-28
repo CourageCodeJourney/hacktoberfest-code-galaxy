@@ -339,6 +339,60 @@
             0% { filter: hue-rotate(0deg); }
             100% { filter: hue-rotate(360deg); }
         }
+        /* Enhanced random twinkling animation */
+@keyframes twinkle-random {
+    0% { 
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    20% { 
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    40% { 
+        opacity: 0.4;
+        transform: scale(0.9);
+    }
+    60% { 
+        opacity: 0.9;
+        transform: scale(1.1);
+    }
+    80% { 
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    100% { 
+        opacity: 0.3;
+        transform: scale(1);
+    }
+}
+
+@keyframes shine-burst {
+    0% { 
+        opacity: 0.3;
+        box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+    }
+    50% { 
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 1),
+                    0 0 25px rgba(255, 255, 255, 0.6);
+    }
+    100% { 
+        opacity: 0.3;
+        box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+    }
+}
+
+    @keyframes gentle-pulse {
+    0%, 100% { 
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.8;
+        transform: scale(1.15);
+    }
+}
 
         @keyframes float-asteroid {
             0% { 
@@ -635,7 +689,7 @@
         const stardustContainer = document.querySelector('.stardust');
 
         // Generate enhanced stars with different sizes and colors
-        for (let i = 0; i < 200; i++) {
+            for (let i = 0; i < 200; i++) {
             const star = document.createElement('div');
             star.classList.add('star');
             
@@ -651,7 +705,13 @@
             
             star.style.left = `${Math.random() * 100}%`;
             star.style.top = `${Math.random() * 100}%`;
-            star.style.animationDelay = `${Math.random() * 3}s`;
+            // Assign random animation types for variety
+            const animations = ['twinkle-random', 'shine-burst', 'gentle-pulse', 'twinkle', 'twinkle-fast', 'twinkle-slow'];
+            const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+            star.style.animation = `${randomAnimation} ${2 + Math.random() * 4}s ease-in-out infinite`;
+    
+             // Random delay for non-synchronized twinkling
+            star.style.animationDelay = `${Math.random() * 5}s`;
             starsContainer.appendChild(star);
         }
 
