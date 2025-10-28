@@ -158,4 +158,44 @@ The effect uses CSS animations with multiple layers of moving star textures to s
   }
 </style>
 
+---
+
+## 🎵 Galaxy Music / Sound Toggle
+
+This feature adds background galaxy music that users can toggle on or off using a floating button in the webpage.
+
+### 🎧 Preview
+![Galaxy Music Toggle Demo](https://github.com/sania28/hacktoberfest-code-galaxy/assets/your-github-username/demo-music-toggle.gif)
+
+*(Replace with your actual preview GIF or screenshot if available.)*
+
+### ⚙️ How It Works
+- A background music file (royalty-free) is embedded in the webpage using the HTML `<audio>` tag.  
+- A JavaScript toggle button lets users **play or pause** the sound.  
+- The button is styled to match the **galactic theme** of the project.  
+
+### 🧠 Code Snippet
+
+```html
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+<button id="musicToggle">🔊 Play Music</button>
+<script>
+  const music = document.getElementById("bgMusic");
+  const toggleBtn = document.getElementById("musicToggle");
+  let isPlaying = false;
+  toggleBtn.addEventListener("click", () => {
+    if (isPlaying) {
+      music.pause();
+      toggleBtn.textContent = "🔇 Play Music";
+    } else {
+      music.play();
+      toggleBtn.textContent = "🔊 Pause Music";
+    }
+    isPlaying = !isPlaying;
+  });
+</script>
+
+
 
