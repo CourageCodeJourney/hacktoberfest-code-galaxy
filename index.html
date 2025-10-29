@@ -1,40 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hacktoberfest Code Galaxy</title>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: radial-gradient(circle at center, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            margin: 0;
+            background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+            overflow: hidden;
             font-family: 'Courier New', monospace;
-            overflow: hidden;
-            padding: 20px;
+            color: #fff;
         }
 
-        .container {
-            position: relative;
-            width: 95%;
-            max-width: 900px;
-            height: 550px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 0 50px rgba(255, 123, 0, 0.3);
-            border: 2px solid #ff7b00;
-        }
-
-        /* Music Toggle  */
+        /* Music Toggle */
         .music-toggle-container {
             position: absolute;
             top: 20px;
@@ -45,7 +25,7 @@
             color: white;
             font: 12px 'Courier New', monospace;
             z-index: 50;
-            text-shadow: 0 0 6px rgba(255, 255, 255, 0.8); /* ✨ White glow under text */
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
         }
 
         .music-toggle input {
@@ -57,7 +37,7 @@
             position: relative;
             cursor: pointer;
             transition: 0.3s ease;
-            box-shadow: 0 0 6px rgba(255, 255, 255, 0.4); /* ✨ White outer glow */
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
         }
 
         .music-toggle input::before {
@@ -70,924 +50,108 @@
             background: #ff7b00;
             border-radius: 50%;
             transition: 0.3s ease;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* ✨ White glow under knob */
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
         }
 
         .music-toggle input:checked {
             background: #00cc6a;
-            box-shadow: 0 0 10px #ffffff; /* ✨ White highlight when active */
+            box-shadow: 0 0 10px #ffffff;
         }
 
         .music-toggle input:checked::before {
             left: 28px;
             background: #00ff88;
-            box-shadow: 0 0 10px #ffffff; /* ✨ Bright white glow when on */
+            box-shadow: 0 0 10px #ffffff;
         }
 
         .music-toggle-container span {
             user-select: none;
         }
 
-
-        /* Galactic Center - The Repository */
-        .galactic-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, #ff7b00, #ff5500, #ff3300);
-            border-radius: 50%;
-            box-shadow:
-                0 0 60px #ff7b00,
-                0 0 120px rgba(255, 123, 0, 0.5);
-            animation: pulse 4s ease-in-out infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
-            text-align: center;
-            z-index: 10;
-        }
-
-        /* Orbiting PRs */
-        .orbit {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 1px dashed rgba(255, 123, 0, 0.3);
-            border-radius: 50%;
-        }
-
-        .orbit-1 {
-            width: 200px;
-            height: 200px;
-            animation: rotate 20s linear infinite;
-        }
-
-        .orbit-2 {
-            width: 300px;
-            height: 300px;
-            animation: rotate 30s linear infinite reverse;
-        }
-
-        .orbit-3 {
-            width: 400px;
-            height: 400px;
-            animation: rotate 40s linear infinite;
-        }
-
-        .pr {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(45deg, #00ff88, #00cc6a);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #0d1b2a;
-            font-size: 10px;
-            font-weight: bold;
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.7);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .pr:hover {
-            transform: scale(1.3);
-            box-shadow: 0 0 25px rgba(0, 255, 136, 1);
-            z-index: 20;
-        }
-
-        .pr.merged {
-            background: linear-gradient(45deg, #6a00ff, #5200cc);
-            box-shadow: 0 0 15px rgba(106, 0, 255, 0.7);
-        }
-
-        .pr.open {
-            background: linear-gradient(45deg, #ff7b00, #ff5500);
-            box-shadow: 0 0 15px rgba(255, 123, 0, 0.7);
-        }
-
-        /* Enhanced Stars with Different Sizes and Twinkle Rates */
-        .stars {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 3s infinite alternate;
-        }
-
-        .star.small {
-            width: 2px;
-            height: 2px;
-            box-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
-        }
-
-        .star.medium {
-            width: 3px;
-            height: 3px;
-            box-shadow: 0 0 4px rgba(255, 255, 255, 0.9);
-            animation: twinkle-fast 2s infinite alternate;
-        }
-
-        .star.large {
-            width: 4px;
-            height: 4px;
-            box-shadow: 0 0 6px rgba(255, 255, 255, 1);
-            animation: twinkle-slow 4s infinite alternate;
-        }
-
-        .star.colored {
-            animation: color-shift 5s infinite alternate;
-        }
-
-        /* Floating Asteroids */
-        .asteroid {
-            position: absolute;
-            background: linear-gradient(135deg, #8b8b8b, #5a5a5a, #3a3a3a);
-            border-radius: 50% 45% 55% 50%;
-            box-shadow:
-                inset -5px -5px 10px rgba(0, 0, 0, 0.5),
-                0 0 10px rgba(139, 139, 139, 0.3);
-            animation: float-asteroid 30s linear infinite;
-        }
-
-        .asteroid.small {
-            width: 15px;
-            height: 15px;
-        }
-
-        .asteroid.medium {
-            width: 25px;
-            height: 25px;
-        }
-
-        .asteroid.large {
-            width: 35px;
-            height: 35px;
-        }
-
-        /* Nebula Clouds */
-        .nebula {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.15;
-            animation: drift 40s ease-in-out infinite;
-        }
-
-        .nebula.purple {
-            background: radial-gradient(circle, #6a00ff, transparent);
-            width: 300px;
-            height: 300px;
-        }
-
-        .nebula.blue {
-            background: radial-gradient(circle, #0099ff, transparent);
-            width: 250px;
-            height: 250px;
-            animation-delay: -20s;
-        }
-
-        .nebula.orange {
-            background: radial-gradient(circle, #ff7b00, transparent);
-            width: 200px;
-            height: 200px;
-            animation-delay: -10s;
-        }
-
-        /* Code Comets */
-        .comet {
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #ff7b00, #00ff88);
-            border-radius: 2px;
-            filter: blur(1px);
-            animation: comet-flight 8s linear infinite;
-            opacity: 0;
-        }
-
-        /* Stardust Particles */
-        .stardust {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .dust-particle {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            animation: drift-slow 20s linear infinite;
-        }
-
-        /* Hacktoberfest Title */
-        .title {
-            position: absolute;
-            top: 7px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            color: white;
-            font-size: 36px;
-            text-shadow: 0 0 10px #ff7b00, 0 0 20px rgba(255, 123, 0, 0.5);
-            letter-spacing: 3px;
-            z-index: 15;
-            animation: glow-pulse 3s ease-in-out infinite;
-        }
-
-        .subtitle {
-            font-size: 16px;
-            margin-top: 1px;
-            color: #00ff88;
-            text-shadow: 0 0 5px #00ff88;
-        }
-
-        /* Contributor Avatars */
-        .contributors {
-            position: absolute;
-            bottom: 15px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            z-index: 15;
-        }
-
-        .contributor {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #ff7b00, #00ff88);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #0d1b2a;
-            font-weight: bold;
-            font-size: 12px;
-            box-shadow: 0 0 10px rgba(255, 123, 0, 0.5);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .contributor:hover {
-            transform: scale(1.2) rotate(10deg);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
-        }
-
-        /* Stats Panel */
-        .stats {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            background: rgba(13, 27, 42, 0.8);
-            border: 1px solid #ff7b00;
-            border-radius: 10px;
-            padding: 15px;
-            color: white;
-            font-size: 14px;
-            z-index: 15;
-            backdrop-filter: blur(5px);
-        }
-
-        .stat {
-            margin: 8px 0;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .stat-value {
-            color: #00ff88;
-            font-weight: bold;
-        }
-
-        /* Animations */
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-            }
-
-            50% {
-                transform: translate(-50%, -50%) scale(1.1);
-            }
-        }
-
-        @keyframes rotate {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg);
-            }
-
-            100% {
-                transform: translate(-50%, -50%) rotate(360deg);
-            }
-        }
-
-        @keyframes twinkle {
-            0% {
-                opacity: 0.3;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes twinkle-fast {
-            0% {
-                opacity: 0.2;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes twinkle-slow {
-            0% {
-                opacity: 0.4;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes color-shift {
-            0% {
-                filter: hue-rotate(0deg);
-            }
-
-            100% {
-                filter: hue-rotate(360deg);
-            }
-        }
-
-        @keyframes float-asteroid {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 0.8;
-            }
-
-            90% {
-                opacity: 0.8;
-            }
-
-            100% {
-                transform: translate(900px, 550px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        @keyframes drift {
-
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            25% {
-                transform: translate(50px, 100px) scale(1.1);
-            }
-
-            50% {
-                transform: translate(100px, 50px) scale(0.9);
-            }
-
-            75% {
-                transform: translate(50px, -50px) scale(1.05);
-            }
-        }
-
-        @keyframes drift-slow {
-            0% {
-                transform: translate(0, 0);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 0.6;
-            }
-
-            90% {
-                opacity: 0.6;
-            }
-
-            100% {
-                transform: translate(100px, 100px);
-                opacity: 0;
-            }
-        }
-
-        @keyframes comet-flight {
-            0% {
-                transform: translateX(-200px) translateY(-100px) rotate(45deg);
-                opacity: 0;
-            }
-
-            5% {
-                opacity: 1;
-            }
-
-            90% {
-                opacity: 1;
-            }
-
-            95% {
-                opacity: 0;
-            }
-
-            100% {
-                transform: translateX(1000px) translateY(500px) rotate(45deg);
-                opacity: 0;
-            }
-        }
-
-        /* Astronaut - slow orbit, small size, gentle bob and spin */
-        .astronaut-orbit {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 480px;
-            /* orbit radius container */
-            height: 480px;
-            /* start the whole orbit rotated a bit so the astronaut begins elsewhere */
-            transform: translate(-50%, -50%) rotate(30deg);
-            pointer-events: none;
-            z-index: 12;
-            animation: astro-orbit 140s linear infinite;
-            /* very slow orbit */
-        }
-
-        .astronaut {
-            position: absolute;
-            top: 100%;
-            /* start from the bottom of the orbit container */
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: astro-bob 6s ease-in-out infinite;
-            /* gentle bob */
-        }
-
-        .astronaut img {
-            width: 40px;
-            /* small astronaut */
-            height: auto;
-            display: block;
-            transform-origin: 50% 50%;
-            will-change: transform;
-            animation: astro-spin 8s linear infinite;
-            /* rotate around own axis */
-            filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.35));
-        }
-
-        @keyframes astro-orbit {
-
-            /* keep the same rotation offset during the full revolution */
-            0% {
-                transform: translate(-50%, -50%) rotate(30deg);
-            }
-
-            100% {
-                transform: translate(-50%, -50%) rotate(390deg);
-            }
-        }
-
-        @keyframes astro-spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes astro-bob {
-            0% {
-                transform: translate(-50%, -50%) translateY(0);
-            }
-
-            50% {
-                transform: translate(-50%, -50%) translateY(-8px);
-            }
-
-            100% {
-                transform: translate(-50%, -50%) translateY(0);
-            }
-        }
-
-        @keyframes glow-pulse {
-
-            0%,
-            100% {
-                text-shadow: 0 0 10px #ff7b00, 0 0 20px rgba(255, 123, 0, 0.5);
-            }
-
-            50% {
-                text-shadow: 0 0 20px #ff7b00, 0 0 40px rgba(255, 123, 0, 0.8);
-            }
-        }
-
-        /* Interactive Mouse Trail */
+        /* Mouse Trail */
         .mouse-trail {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
-            z-index: 1000;
+            overflow: hidden;
+            z-index: 999;
         }
 
         .trail-particle {
             position: absolute;
             width: 6px;
             height: 6px;
-            background: radial-gradient(circle, #ff7b00, #00ff88, transparent);
             border-radius: 50%;
-            box-shadow: 
-                0 0 10px #ff7b00,
-                0 0 20px rgba(255, 123, 0, 0.6),
-                0 0 30px rgba(0, 255, 136, 0.4);
-            animation: trail-fade 1.5s ease-out forwards;
-            transform: translate(-50%, -50%);
+            background: rgba(255, 123, 0, 0.8);
+            animation: fadeTrail 1.2s ease-out forwards;
         }
 
         .trail-particle.sparkle {
+            background: rgba(255, 255, 255, 0.9);
             width: 4px;
             height: 4px;
-            background: radial-gradient(circle, #ffffff, #ff7b00, transparent);
-            box-shadow: 
-                0 0 8px #ffffff,
-                0 0 16px rgba(255, 255, 255, 0.8),
-                0 0 24px rgba(255, 123, 0, 0.6);
-            animation: sparkle-fade 1s ease-out forwards;
+            animation: fadeTrail 1s ease-out forwards;
         }
 
         .trail-particle.magic {
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
             width: 8px;
             height: 8px;
-            background: radial-gradient(circle, #6a00ff, #ff7b00, #00ff88, transparent);
-            box-shadow: 
-                0 0 12px #6a00ff,
-                0 0 24px rgba(106, 0, 255, 0.7),
-                0 0 36px rgba(255, 123, 0, 0.5),
-                0 0 48px rgba(0, 255, 136, 0.3);
-            animation: magic-fade 2s ease-out forwards;
+            animation: fadeTrail 2s ease-out forwards;
         }
 
-        @keyframes trail-fade {
-            0% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            50% {
-                opacity: 0.7;
-                transform: translate(-50%, -50%) scale(1.2);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
-            }
-        }
-
-        @keyframes sparkle-fade {
-            0% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1) rotate(0deg);
-            }
-            50% {
-                opacity: 0.8;
-                transform: translate(-50%, -50%) scale(1.5) rotate(180deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.3) rotate(360deg);
-            }
-        }
-
-        @keyframes magic-fade {
-            0% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-                filter: hue-rotate(0deg);
-            }
-            25% {
-                opacity: 0.9;
-                transform: translate(-50%, -50%) scale(1.3);
-                filter: hue-rotate(90deg);
-            }
-            50% {
-                opacity: 0.7;
-                transform: translate(-50%, -50%) scale(1.1);
-                filter: hue-rotate(180deg);
-            }
-            75% {
-                opacity: 0.4;
-                transform: translate(-50%, -50%) scale(0.8);
-                filter: hue-rotate(270deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.3);
-                filter: hue-rotate(360deg);
-            }
-        }
-
-        /* Enhanced cursor for better trail visibility */
-        body {
-            cursor: crosshair;
-        }
-
-        /* Mobile Responsiveness */
-
-        /* Meteor Shower Animation */
-        .meteor {
-            position: absolute;
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0));
-            border-radius: 2px;
-            opacity: 0.7;
-            pointer-events: none;
-            transform: rotate(45deg);
-            animation: meteor-fall 2s linear forwards;
-            z-index: 20;
-        }
-
-        @keyframes meteor-fall {
-            0% {
-                transform: translate(0, 0) rotate(45deg);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translate(800px, 400px) rotate(45deg);
-                opacity: 0;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                height: 500px;
-            }
-
-            .title {
-                font-size: 28px;
-            }
-
-            .orbit-1 {
-                width: 200px;
-                height: 200px;
-            }
-
-            .orbit-2 {
-                width: 300px;
-                height: 300px;
-            }
-
-            .orbit-3 {
-                width: 400px;
-                height: 400px;
-            }
-
-            .pr {
-                width: 30px;
-                height: 30px;
-                font-size: 8px;
-            }
-
-            .contributors {
-                gap: 10px;
-            }
-
-            /* Scale down astronaut orbit and image on medium screens */
-            .astronaut-orbit {
-                width: 320px;
-                height: 320px;
-                animation-duration: 160s;
-                /* keep it slow */
-            }
-
-            .astronaut img {
-                width: 32px;
-            }
-
-            .contributor {
-                width: 40px;
-                height: 40px;
-                font-size: 10px;
-            }
-
-            .stats {
-                top: 20px;
-                right: 20px;
-                padding: 10px;
-                font-size: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                height: 450px;
-            }
-
-            .title {
-                font-size: 22px;
-            }
-
-            .subtitle {
-                font-size: 14px;
-            }
-
-            .orbit-1 {
-                width: 150px;
-                height: 150px;
-            }
-
-            .orbit-2 {
-                width: 220px;
-                height: 220px;
-            }
-
-            .orbit-3 {
-                width: 300px;
-                height: 300px;
-            }
-
-            .pr {
-                width: 25px;
-                height: 25px;
-                font-size: 7px;
-            }
-
-            .contributors {
-                gap: 8px;
-                bottom: 20px;
-            }
-
-            .contributor {
-                width: 35px;
-                height: 35px;
-                font-size: 9px;
-            }
-
-            .stats {
-                position: relative;
-                top: auto;
-                right: auto;
-                margin: 20px auto;
-                width: 80%;
-            }
-
-            /* Hide astronaut on very small screens to prevent overlap */
-            .astronaut-orbit {
-                display: none;
-            }
-
-            /* Disable mouse trail on very small screens for performance */
-            .mouse-trail {
-                display: none;
-            }
-        }
-
-        /* Touch device optimizations */
-        @media (hover: none) and (pointer: coarse) {
-            .mouse-trail {
-                display: none;
-            }
-            
-            body {
-                cursor: default;
-            }
+        @keyframes fadeTrail {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0.5); }
         }
     </style>
 </head>
 
 <body>
-
-    <!-- Music Toggle  -->
+    <!-- Music Toggle -->
     <div class="music-toggle-container">
-    <label class="music-toggle">
-        <input type="checkbox" id="musicToggle">
-    </label>
-    <span>Music</span>
+        <label class="music-toggle">
+            <input type="checkbox" id="musicToggle">
+        </label>
+        <span>Music</span>
     </div>
 
     <!-- Background Music -->
-    <audio id="bgMusic" loop autoplay>
+    <audio id="bgMusic" loop>
         <source src="assets/bg_music.mp3" type="audio/mpeg">
     </audio>
 
     <div class="container">
-        <div class="title">
-            HACKTOBERFEST 2025
-            <div class="subtitle">Join the Open Source Revolution</div>
-        </div>
-
-        <!-- Nebula Clouds -->
-        <div class="nebula purple" style="top: 10%; left: 20%;"></div>
-        <div class="nebula blue" style="top: 60%; right: 15%;"></div>
-        <div class="nebula orange" style="bottom: 20%; left: 40%;"></div>
-
-        <!-- Galactic Center - Main Repository -->
-        <div class="galactic-center">
-            MAIN<br>REPO
-        </div>
-
-        <!-- Orbits with Pull Requests -->
-        <div class="orbit orbit-1"></div>
-        <div class="orbit orbit-2"></div>
-        <div class="orbit orbit-3"></div>
-
-        <!-- Astronaut: small, slow orbit, gentle bob and spin -->
-        <div class="astronaut-orbit" aria-hidden="true">
-            <div class="astronaut">
-                <img src="assets/astronaut.png" alt="Astronaut floating in space">
-            </div>
-        </div>
-
-        <!-- Stars Background -->
-        <div class="stars"></div>
-
-        <!-- Stardust Particles -->
-        <div class="stardust"></div>
-
-        <!-- Comets -->
-        <div class="comet" style="top: 100px; animation-delay: 0s;"></div>
-        <div class="comet" style="top: 300px; animation-delay: 3s;"></div>
-        <div class="comet" style="top: 450px; animation-delay: 6s;"></div>
-
-        <!-- Stats Panel -->
-        <div class="stats">
-            <div class="stat">
-                <span>Pull Requests:</span>
-                <span class="stat-value">42</span>
-            </div>
-            <div class="stat">
-                <span>Contributors:</span>
-                <span class="stat-value">18</span>
-            </div>
-            <div class="stat">
-                <span>Repositories:</span>
-                <span class="stat-value">7</span>
-            </div>
-            <div class="stat">
-                <span>Merged PRs:</span>
-                <span class="stat-value">35</span>
-            </div>
-        </div>
-
-        <!-- Contributors -->
-        <div class="contributors"></div>
+        <div class="title">HACKTOBERFEST 2025</div>
+        <!-- Your other content here -->
     </div>
 
-    <!-- Interactive Mouse Trail Container -->
     <div class="mouse-trail"></div>
 
     <script>
-        const container = document.querySelector('.container');
-        const starsContainer = document.querySelector('.stars');
-        const stardustContainer = document.querySelector('.stardust');
-<<<<<<< HEAD
+        // Music Toggle Logic
+        const musicToggle = document.getElementById('musicToggle');
+        const bgMusic = document.getElementById('bgMusic');
+
+        musicToggle.addEventListener('change', () => {
+            if (musicToggle.checked) {
+                bgMusic.play();
+            } else {
+                bgMusic.pause();
+            }
+        });
+
+        // Interactive Mouse Trail
         const mouseTrailContainer = document.querySelector('.mouse-trail');
+        let mouseX = 0, mouseY = 0, lastTrailTime = 0;
+        const trailInterval = 50;
 
-        // Interactive Mouse Trail System
-        let mouseX = 0;
-        let mouseY = 0;
-        let trailParticles = [];
-        let lastTrailTime = 0;
-        const trailInterval = 50; // milliseconds between particles
-
-        // Track mouse movement everywhere on the page
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
-            
             const currentTime = Date.now();
             if (currentTime - lastTrailTime > trailInterval) {
                 createTrailParticle(mouseX, mouseY);
@@ -995,41 +159,28 @@
             }
         });
 
-        // Create different types of trail particles
         function createTrailParticle(x, y) {
             const particle = document.createElement('div');
             particle.classList.add('trail-particle');
-            
-            // Randomly choose particle type for variety
-            const particleTypes = ['normal', 'sparkle', 'magic'];
-            const randomType = particleTypes[Math.floor(Math.random() * particleTypes.length)];
-            
-            if (randomType === 'sparkle') {
-                particle.classList.add('sparkle');
-            } else if (randomType === 'magic') {
-                particle.classList.add('magic');
-            }
-            
-            // Add slight randomness to position for more natural trail
+
+            const types = ['normal', 'sparkle', 'magic'];
+            const type = types[Math.floor(Math.random() * types.length)];
+            if (type === 'sparkle') particle.classList.add('sparkle');
+            if (type === 'magic') particle.classList.add('magic');
+
             const offsetX = (Math.random() - 0.5) * 10;
             const offsetY = (Math.random() - 0.5) * 10;
-            
+
             particle.style.left = `${x + offsetX}px`;
             particle.style.top = `${y + offsetY}px`;
-            
             mouseTrailContainer.appendChild(particle);
-            
-            // Remove particle after animation completes
+
             setTimeout(() => {
-                if (particle.parentNode) {
-                    particle.parentNode.removeChild(particle);
-                }
-            }, randomType === 'magic' ? 2000 : randomType === 'sparkle' ? 1000 : 1500);
+                particle.remove();
+            }, type === 'magic' ? 2000 : type === 'sparkle' ? 1000 : 1500);
         }
 
-        // Enhanced trail effect on click anywhere
         document.addEventListener('click', (e) => {
-            // Create burst of particles on click
             for (let i = 0; i < 8; i++) {
                 setTimeout(() => {
                     createTrailParticle(e.clientX, e.clientY);
@@ -1037,13 +188,10 @@
             }
         });
 
-        // Special trail effect when hovering over interactive elements
         document.addEventListener('mouseover', (e) => {
-            if (e.target.classList.contains('pr') || 
-                e.target.classList.contains('contributor') || 
+            if (e.target.classList.contains('pr') ||
+                e.target.classList.contains('contributor') ||
                 e.target.classList.contains('galactic-center')) {
-                
-                // Create magical burst when hovering over interactive elements
                 for (let i = 0; i < 5; i++) {
                     setTimeout(() => {
                         const particle = document.createElement('div');
@@ -1051,179 +199,11 @@
                         particle.style.left = `${e.clientX + (Math.random() - 0.5) * 20}px`;
                         particle.style.top = `${e.clientY + (Math.random() - 0.5) * 20}px`;
                         mouseTrailContainer.appendChild(particle);
-                        
-                        setTimeout(() => {
-                            if (particle.parentNode) {
-                                particle.parentNode.removeChild(particle);
-                            }
-                        }, 2000);
+                        setTimeout(() => particle.remove(), 2000);
                     }, i * 50);
                 }
-=======
-        const musicToggle = document.getElementById('musicToggle');
-        const bgMusic = document.getElementById('bgMusic');
-
-        musicToggle.addEventListener('change', () => {
-            if (musicToggle.checked) {
-                bgMusic.play();
-            } 
-            else {
-                bgMusic.pause();
->>>>>>> pr-8
             }
         });
-
-        // Generate enhanced stars with different sizes and colors
-        for (let i = 0; i < 200; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-
-            // Randomize star sizes
-            const sizeClasses = ['small', 'medium', 'large'];
-            const randomSize = sizeClasses[Math.floor(Math.random() * sizeClasses.length)];
-            star.classList.add(randomSize);
-
-            // Add colored stars occasionally
-            if (Math.random() > 0.85) {
-                star.classList.add('colored');
-            }
-
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.top = `${Math.random() * 100}%`;
-            star.style.animationDelay = `${Math.random() * 3}s`;
-            starsContainer.appendChild(star);
-        }
-
-        // Generate floating asteroids
-        function createAsteroid() {
-            const asteroid = document.createElement('div');
-            asteroid.classList.add('asteroid');
-
-            const sizeClasses = ['small', 'medium', 'large'];
-            const randomSize = sizeClasses[Math.floor(Math.random() * sizeClasses.length)];
-            asteroid.classList.add(randomSize);
-
-            asteroid.style.left = `${-50 + Math.random() * 100}px`;
-            asteroid.style.top = `${Math.random() * 100}%`;
-            asteroid.style.animationDuration = `${20 + Math.random() * 20}s`;
-            asteroid.style.animationDelay = `${Math.random() * 5}s`;
-
-            container.appendChild(asteroid);
-
-            // Remove asteroid after animation completes
-            setTimeout(() => {
-                asteroid.remove();
-                createAsteroid(); // Create a new one
-            }, (20 + Math.random() * 20) * 1000);
-        }
-
-        // Create initial asteroids
-        for (let i = 0; i < 5; i++) {
-            setTimeout(() => createAsteroid(), i * 2000);
-        }
-
-        // Generate stardust particles
-        for (let i = 0; i < 100; i++) {
-            const dust = document.createElement('div');
-            dust.classList.add('dust-particle');
-            dust.style.left = `${Math.random() * 100}%`;
-            dust.style.top = `${Math.random() * 100}%`;
-            dust.style.animationDelay = `${Math.random() * 20}s`;
-            dust.style.animationDuration = `${15 + Math.random() * 10}s`;
-            stardustContainer.appendChild(dust);
-        }
-
-        // Generate PRs on orbits
-        const orbits = [
-            document.querySelector('.orbit-1'),
-            document.querySelector('.orbit-2'),
-            document.querySelector('.orbit-3')
-        ];
-
-        orbits.forEach((orbit, orbitIndex) => {
-            const prCount = 6 + orbitIndex * 3;
-
-            for (let i = 0; i < prCount; i++) {
-                const pr = document.createElement('div');
-                pr.classList.add('pr');
-
-                const status = Math.random() > 0.5 ? 'merged' : 'open';
-                pr.classList.add(status);
-
-                const angle = (i / prCount) * 360;
-                const radius = orbit.offsetWidth / 2;
-                const x = radius * Math.cos(angle * Math.PI / 180);
-                const y = radius * Math.sin(angle * Math.PI / 180);
-
-                pr.style.left = `calc(50% + ${x}px)`;
-                pr.style.top = `calc(50% + ${y}px)`;
-                pr.style.transform = `translate(-50%, -50%)`;
-                pr.textContent = `PR${orbitIndex + 1}-${i + 1}`;
-
-                pr.addEventListener('mouseover', function () {
-                    this.setAttribute('title', `${status.toUpperCase()} - ${this.textContent}`);
-                });
-
-                orbit.appendChild(pr);
-            }
-        });
-
-        // Generate contributor avatars
-        const contributorsContainer = document.querySelector('.contributors');
-        const contributorNames = ['ALEX', 'SAM', 'JAMIE', 'TAY', 'RILEY', 'CASEY', 'JORDAN', 'SKY'];
-
-        contributorNames.forEach(name => {
-            const contributor = document.createElement('div');
-            contributor.classList.add('contributor');
-            contributor.textContent = name;
-            contributorsContainer.appendChild(contributor);
-        });
-
-        // Animate stats counter
-        function animateCounter(element, target, duration) {
-            let start = 0;
-            const increment = target / (duration / 16);
-            const timer = setInterval(() => {
-                start += increment;
-                if (start >= target) {
-                    element.textContent = target;
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(start);
-                }
-            }, 16);
-        }
-
-        // Animate stats after a delay
-        setTimeout(() => {
-            const statValues = document.querySelectorAll('.stat-value');
-            animateCounter(statValues[0], 42, 2000);
-            animateCounter(statValues[1], 18, 2000);
-            animateCounter(statValues[2], 7, 2000);
-            animateCounter(statValues[3], 35, 2000);
-        }, 1000);
-
-
-        // Meteor Shower Animation
-        function createMeteor() {
-            const meteor = document.createElement('div');
-            meteor.classList.add('meteor');
-
-            // random start position (top or left edge)
-            meteor.style.top = `${Math.random() * 50}%`;
-            meteor.style.left = `${Math.random() * 50}%`;
-            meteor.style.animationDuration = `${1.5 + Math.random()}s`;
-
-            document.querySelector('.container').appendChild(meteor);
-
-            // remove after animation
-            setTimeout(() => meteor.remove(), 2000);
-        }
-
-        // Generate meteors periodically
-        setInterval(createMeteor, 1200);
-
     </script>
 </body>
-
 </html>
