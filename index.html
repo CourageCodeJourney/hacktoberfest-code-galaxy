@@ -34,61 +34,6 @@
             border: 2px solid #ff7b00;
         }
 
-        /* Music Toggle  */
-        .music-toggle-container {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: white;
-            font: 12px 'Courier New', monospace;
-            z-index: 50;
-            text-shadow: 0 0 6px rgba(255, 255, 255, 0.8); /* ✨ White glow under text */
-        }
-
-        .music-toggle input {
-            appearance: none;
-            width: 50px;
-            height: 24px;
-            background: #222;
-            border-radius: 18px;
-            position: relative;
-            cursor: pointer;
-            transition: 0.3s ease;
-            box-shadow: 0 0 6px rgba(255, 255, 255, 0.4); /* ✨ White outer glow */
-        }
-
-        .music-toggle input::before {
-            content: "";
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 20px;
-            height: 20px;
-            background: #ff7b00;
-            border-radius: 50%;
-            transition: 0.3s ease;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* ✨ White glow under knob */
-        }
-
-        .music-toggle input:checked {
-            background: #00cc6a;
-            box-shadow: 0 0 10px #ffffff; /* ✨ White highlight when active */
-        }
-
-        .music-toggle input:checked::before {
-            left: 28px;
-            background: #00ff88;
-            box-shadow: 0 0 10px #ffffff; /* ✨ Bright white glow when on */
-        }
-
-        .music-toggle-container span {
-            user-select: none;
-        }
-
-
         /* Galactic Center - The Repository */
         .galactic-center {
             position: absolute;
@@ -889,20 +834,6 @@
 </head>
 
 <body>
-
-    <!-- Music Toggle  -->
-    <div class="music-toggle-container">
-    <label class="music-toggle">
-        <input type="checkbox" id="musicToggle">
-    </label>
-    <span>Music</span>
-    </div>
-
-    <!-- Background Music -->
-    <audio id="bgMusic" loop autoplay>
-        <source src="assets/bg_music.mp3" type="audio/mpeg">
-    </audio>
-
     <div class="container">
         <div class="title">
             HACKTOBERFEST 2025
@@ -973,7 +904,6 @@
         const container = document.querySelector('.container');
         const starsContainer = document.querySelector('.stars');
         const stardustContainer = document.querySelector('.stardust');
-HEAD
         const mouseTrailContainer = document.querySelector('.mouse-trail');
 
         // Interactive Mouse Trail System
@@ -1059,16 +989,6 @@ HEAD
                         }, 2000);
                     }, i * 50);
                 }
-        const musicToggle = document.getElementById('musicToggle');
-        const bgMusic = document.getElementById('bgMusic');
-
-        musicToggle.addEventListener('change', () => {
-            if (musicToggle.checked) {
-                bgMusic.play();
-            } 
-            else {
-                bgMusic.pause();
- pr-8
             }
         });
 
